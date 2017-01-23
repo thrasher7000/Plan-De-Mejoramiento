@@ -7,15 +7,21 @@
         <title>Inicio</title>
     </h:head>
     <h:body>
-        <h:form>
+        <p:fieldset legend="Registro de clientes">
+        <p:panelGrid columns="3">    
+         <h:form>
+             <p:panelGrid columns="3">    
             <br></br><p:outputLabel value="Ingrese su nombre :"></p:outputLabel>
-            <p:inputText value="#{clienteManagedBean.cliente.nombre}"></p:inputText>
+            <p:inputText type="text" required="true" value="#{clienteManagedBean.cliente.nombre}"></p:inputText>
             <br></br><p:outputLabel value="Ingrese su dirección :"></p:outputLabel>
-            <p:inputText value="#{clienteManagedBean.cliente.direccion}"></p:inputText>
+            <p:inputText type="text" required="true" value="#{clienteManagedBean.cliente.direccion}"></p:inputText>
              <br></br><p:outputLabel value="Ingrese su teléfono: "></p:outputLabel>
-             <p:inputText value="#{clienteManagedBean.cliente.telefono}"></p:inputText>
-             <br></br><h:commandButton value="Registrar" actionListener="#{clienteManagedBean.registrar()}"></h:commandButton>
-        </h:form>
+             <p:inputText type="number" required="true" value="#{clienteManagedBean.cliente.telefono}"></p:inputText>
+             <br></br><p:commandButton icon="ui-icon-check" value="Registrar" actionListener="#{clienteManagedBean.registrar()}"></p:commandButton>
+             </p:panelGrid>
+         </h:form>
+            </p:panelGrid>
+            </p:fieldset>
     </h:body>
 </html>
 

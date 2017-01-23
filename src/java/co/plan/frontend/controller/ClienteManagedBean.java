@@ -6,6 +6,7 @@ import co.plan.backend.persistence.facades.ClienteFacadeLocal;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
@@ -46,4 +47,11 @@ public class ClienteManagedBean implements Serializable {
     public void registrar(){
        cFL.create(cliente);
     }
+    public List <Cliente> Listar(){
+        return cFL.findAll();
+    }
+    public void eliminar (Cliente c){
+        cFL.remove(cliente);
+    }
+    
 }
