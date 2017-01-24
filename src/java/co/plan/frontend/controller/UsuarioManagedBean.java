@@ -54,13 +54,16 @@ public class UsuarioManagedBean implements Serializable {
         uFL.remove(u);
     }
     public void validar(){
+        System.out.println("hola");
         FacesMessage msg = null;
         try {
-        uFL.find(this.usu.getContrasena());
+        uFL.find(this.usu);
         msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"bienvenido",this.usu.getNombre());
         FacesContext.getCurrentInstance().addMessage(null, msg);
         } catch (Exception e) {
+            System.out.println("error");
              msg = new FacesMessage(FacesMessage.SEVERITY_WARN,"error","error en el metodo");
+             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
         
     }
