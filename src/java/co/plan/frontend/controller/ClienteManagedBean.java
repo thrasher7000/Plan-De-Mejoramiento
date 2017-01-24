@@ -53,5 +53,4 @@ public class ClienteManagedBean implements Serializable {
     public void eliminar (Cliente c){
         cFL.remove(cliente);
     }
-    
 }
