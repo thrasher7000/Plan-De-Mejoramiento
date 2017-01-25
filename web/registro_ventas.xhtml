@@ -27,7 +27,7 @@
                     <h:outputLabel value="IdVehiculo:" for="idVehiculo" />
                     <h:selectOneMenu id="idVehiculo" value="#{ventaManagedBean.venta.idVehiculo}" title="IdVehiculo" required="true" requiredMessage="The IdVehiculo field is required.">
                         <!-- TODO: update below reference to list of available items-->
-                        <f:selectItems value="#{vehiculoManagedBean.listarVehiculos()}" var="cv" itemLabel="#{cv.codigoVehiculo}"/>
+                        <f:selectItems value="#{vehiculoManagedBean.ListarVehiculos()}" var="cv" itemLabel="#{cv.marca} (#{cv.modelo})"/>
                     </h:selectOneMenu>
                 </h:panelGrid>
             </h:form>
