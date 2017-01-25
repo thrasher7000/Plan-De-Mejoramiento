@@ -27,8 +27,8 @@
                         <!-- TODO: update below reference to list of available items-->
                         <f:selectItems value="#{vehiculoManagedBean.ListarVehiculos()}" var="cv" itemLabel="#{cv.marca} (#{cv.modelo})"/>
                     </h:selectOneMenu>
-                    <br/><p:commandButton icon="ui-icon-document" value="Registrar venta" actionListener="#{ventaManagedBean.registrarVenta()}"></p:commandButton>
-                    <p:link outcome="inicio" value="volver"></p:link>
+                   <p:commandButton icon="ui-icon-arrowreturn-1-w" value="volver" action="inicio.xhtml"></p:commandButton>
+                   <p:commandButton icon="ui-icon-check" value="Registrar" actionListener="#{ventaManagedBean.registrarVenta()}"></p:commandButton>
                 </p:panelGrid>
                 </p:fieldset>
             </h:form>

@@ -10,7 +10,7 @@
     <h:body>
         <f:view>
             <h:form>
-                <p:fieldset legend="Lista de clientes"></p:fieldset>
+                <p:fieldset  legend="Lista de clientes"></p:fieldset>
                 <p:dataTable value="#{clienteManagedBean.Listar()}" var="item">
                     <p:column>
                         <f:facet name="header">
@@ -37,12 +37,13 @@
                         <h:outputText value="#{item.direccion}"/>
                     </p:column>
                     <p:column>
-                        <p:commandButton value="Editar" action="#{clienteManagedBean}"></p:commandButton>
+                        <p:commandButton icon="ui-icon-pencil" value="Editar" action="#{clienteManagedBean}"></p:commandButton>
                     </p:column>
                      <p:column>
-                         <p:commandButton value="eliminar" actionListener="#{clienteManagedBean.eliminar(c)}"></p:commandButton>
+                         <p:commandButton icon="ui-icon-trash" value="eliminar" actionListener="#{clienteManagedBean.eliminar(c)}"></p:commandButton>
                     </p:column>
                 </p:dataTable>
+                <p:commandButton icon="ui-icon-arrowreturn-1-w" value="volver" action="inicio.xhtml"></p:commandButton>
             </h:form>
         </f:view>
     </h:body>
