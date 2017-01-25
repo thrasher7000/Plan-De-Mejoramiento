@@ -24,7 +24,7 @@ import javax.persistence.Persistence;
 public class UsuarioManagedBean implements Serializable {
 
     private Usuario usu;
-    @Inject
+    @Inject 
     private UsuarioFacadeLocal uFL;
 
     public UsuarioManagedBean() {
