@@ -4,19 +4,22 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-    <head>
+    <h:head>
         <title>Inicio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+    </h:head>
     <body>
-        <div>
-            <h1>Red de concesionarios</h1>
-        </div>
-        <a href="faces/registro_cliente.xhtml">Registro cliente</a><br/>
-        <a href="faces/registro_vehiculos.xhtml">registro vehículos</a><br/>
-        <a href="faces/registro_ventas.xhtml">registro ventas</a><br/>
-        <a href="lista_clientes.xhtml">Lista de clientes</a><br/>
-        <a href="lista_vehiculos.xhtml">Lista de vehículos</a><br/>
-        <a href="lista_ventas.xhtml">Lista de ventas</a><br/>
+        <p:fieldset legend="Lista de ventas">
+        <h:form>
+            <p:panelGrid columns="3">
+            <p:commandButton icon="ui-icon-person" value="Registro Clientes" action="faces/registro_cliente.xhtml"></p:commandButton><br/>
+            <p:commandButton icon="ui-icon-cart" value="Registro Vehículos" action="faces/registro_vehiculos.xhtml"></p:commandButton><br/>
+            <p:commandButton icon="ui-icon-script" value="Registro Ventas" action="faces/registro_ventas.xhtml"></p:commandButton><br/>
+            <p:commandButton icon="ui-icon-person" value="Lista de clientes" action="lista_clientes.xhtml"></p:commandButton><br/>
+            <p:commandButton icon="ui-icon-cart" value="Lista de vehículos" action="lista_vehiculos.xhtml"></p:commandButton><br/>
+            <p:commandButton icon="ui-icon-script" value="Lista de ventas" action="lista_ventas.xhtml"></p:commandButton><br/>
+            </p:panelGrid>
+        </h:form>
+        </p:fieldset>
     </body>
 </html>
