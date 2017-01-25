@@ -9,6 +9,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="IdVenta:" for="idVenta" />
+                    <h:inputText id="idVenta" value="#{ventaManagedBean.venta.idVenta}" title="IdVenta" required="true" requiredMessage="The IdVenta field is required."/>
+                    <h:outputLabel value="Fecha:" for="fecha" />
+                    <h:inputText id="fecha" value="#{ventaManagedBean.venta.fecha}" title="Fecha" required="true" requiredMessage="The Fecha field is required."/>
+                    <h:outputLabel value="IdCliente:" for="idCliente" />
+                    <h:selectOneMenu id="idCliente" value="#{ventaManagedBean.venta.idCliente}" title="IdCliente" required="true" requiredMessage="The IdCliente field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{fixme}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="IdVehiculo:" for="idVehiculo" />
+                    <h:selectOneMenu id="idVehiculo" value="#{ventaManagedBean.venta.idVehiculo}" title="IdVehiculo" required="true" requiredMessage="The IdVehiculo field is required.">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{vehiculoManagedBean.listarVehiculos()}" var="cv" itemLabel="#{cv.codigoVehiculo}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+            </h:form>
+        </f:view>
+
     </body>
 </html>
