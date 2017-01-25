@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>TODO supply a title</title>
+        <title>Ventas</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <body>
@@ -13,11 +13,11 @@
 
 
             <h:form>
-                <h1><h:outputText value="Create/Edit"/></h1>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="Fecha:" for="fecha" />
-                    <h:inputText id="fecha" value="#{ventaManagedBean.venta.fecha}" title="Fecha" required="true" requiredMessage="The Fecha field is required."/>
-                    <h:outputLabel value="IdCliente:" for="idCliente" />
+                <p:fieldset legend="Registro de ventas">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Fecha:" for="fecha" />
+                    <p:inputText id="fecha" value="#{ventaManagedBean.venta.fecha}" title="Fecha" required="true" requiredMessage="The Fecha field is required."/>
+                    <p:outputLabel value="IdCliente:" for="idCliente" />
                      <h:selectOneMenu id="idCliente" value="#{ventaManagedBean.venta.idCliente}" title="IdCliente" required="true" requiredMessage="The IdCliente field is required.">
                         <!-- TODO: update below reference to list of available items-->
                         <f:selectItems value="#{clienteManagedBean.Listar()}" var="ci" itemLabel="#{ci.nombre} (#{ci.idCliente})" />
@@ -27,8 +27,10 @@
                         <!-- TODO: update below reference to list of available items-->
                         <f:selectItems value="#{vehiculoManagedBean.ListarVehiculos()}" var="cv" itemLabel="#{cv.marca} (#{cv.modelo})"/>
                     </h:selectOneMenu>
-                    <p:commandButton value="Registrar venta" actionListener="#{ventaManagedBean.registrarVenta()}"></p:commandButton>
-                </h:panelGrid>
+                    <br/><p:commandButton icon="ui-icon-document" value="Registrar venta" actionListener="#{ventaManagedBean.registrarVenta()}"></p:commandButton>
+                    <p:link outcome="inicio" value="volver"></p:link>
+                </p:panelGrid>
+                </p:fieldset>
             </h:form>
 
         </f:view>
