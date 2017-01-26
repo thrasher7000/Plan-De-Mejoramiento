@@ -86,7 +86,7 @@ public class UsuarioManagedBean implements Serializable {
             if (usu != null) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Login Succes", "Bienvenido "+usu.getNombre()));
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-                context.redirect(context.getRequestContextPath() + "/inicio.xhtml");
+                context.redirect(context.getRequestContextPath() + "/faces/inicio.xhtml");
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Usuario o Contraseña Incorrecta"));
             }
