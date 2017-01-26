@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import javax.faces.event.ActionEvent;
 
 /**
  *
@@ -42,7 +43,8 @@ public class VehiculoManagedBean implements Serializable {
         this.vFL = vFL;
     }
     //C.R.U.D
-    public void registrarVehiculo(){
+    public void registrarVehiculo(ActionEvent e){
+        System.out.println("co.plan.frontend.controller.VehiculoManagedBean.registrarVehiculo()");
         vFL.create(vehiculo);
     }
     public List <Vehiculo> ListarVehiculos(){
@@ -50,5 +52,8 @@ public class VehiculoManagedBean implements Serializable {
     }
     public void eliminar (Vehiculo v){
         vFL.remove(vehiculo);
+    }
+    public void prueba(ActionEvent e){
+        System.out.println("co.plan.frontend.controller.VehiculoManagedBean.registrarVehiculo()"+e);
     }
 }

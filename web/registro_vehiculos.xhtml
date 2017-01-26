@@ -9,10 +9,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <body>
-         <h:form>
-                <p:fieldset legend="Registro de vehículos">
+        <h:form>
+            <p:fieldset legend="Registro de vehículos">
                 <h:panelGrid columns="2">
-                   
                     <p:outputLabel value="Marca:" for="marca" />
                     <p:inputText id="marca" value="#{vehiculoManagedBean.vehiculo.marca}" title="Marca" required="true" requiredMessage="The Marca field is required."/>
                     <p:outputLabel value="Modelo:" for="modelo" />
@@ -20,19 +19,16 @@
                     <p:outputLabel value="Precio:" for="precio" />
                     <p:inputText id="precio" value="#{vehiculoManagedBean.vehiculo.precio}" title="Precio" required="true" requiredMessage="The Precio field is required."/>
                     <p:outputLabel value="Concesionario:" for="codigoConcesionario" />
-                    <h:selectOneMenu id="codigoConcesionario" value="#{vehiculoManagedBean.vehiculo.codigoConcesionario}" title="Concesionario" required="true" requiredMessage="El Concesionario es requerido.">
+                    <p:selectOneMenu id="codigoConcesionario" value="#{vehiculoManagedBean.vehiculo.codigoConcesionario}" required="true" requiredMessage="El Concesionario es requerido.">
                         <!-- TODO: update below reference to list of available items-->
                         <f:selectItems value="#{concesionarioManagedBean.ListarConsesionario()}" var="cons" itemLabel="#{cons.nombre} (#{cons.direccion})"/>
-                    </h:selectOneMenu>
-                   <p:commandButton icon="ui-icon-arrowreturn-1-w" value="volver" action="inicio.xhtml"></p:commandButton>
-                    <p:commandButton icon="ui-icon-check" value="Registrar" actionListener="#{vehiculoManagedBean.registrarVehiculo()}"></p:commandButton>
+                    </p:selectOneMenu>
+                    <!--<p:commandButton icon="ui-icon-arrowreturn-1-w" value="volver" action="inicio.xhtml"></p:commandButton>-->
+                    <h:commandButton id="registrar" value="Registrar" actionListener="#{vehiculoManagedBean.prueba}"></h:commandButton>
+                    <p:commandButton id="regVeh" value="Registrar" actionListener="#{vehiculoManagedBean.registrarVehiculo}"></p:commandButton>
                     
                 </h:panelGrid>
-                    </p:fieldset>
-              
-                    </h:form>
-                    
-        
-
+            </p:fieldset>
+        </h:form>
     </body>
 </html>
