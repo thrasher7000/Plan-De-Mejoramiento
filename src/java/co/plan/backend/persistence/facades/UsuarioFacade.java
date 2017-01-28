@@ -10,7 +10,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
@@ -32,12 +31,19 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     }
 
     @Override
-    public List<Usuario> logIn(String user, String password) {
-        Query query = getEntityManager().createNamedQuery("Usuario.findByUsuarioAndPassword");
-        query.setParameter("usuario", user);
-        query.setParameter("contrasena", password);
-        List Usuario = (List<Usuario>) query.getResultList();
-        return Usuario;
+    public Usuario validarUsuario(String user, String password) {
+        Usuario u = null;
+        try {
+            u = em.createNamedQuery("Usuario.findByUsuario",Usuario.class)
+                    .setParameter("usuario", user).getSingleResult();
+            if (!u.getContrasena().equals(password)) {
+                u = null;
+            }
+        } catch (Exception e) {
+        }
+        return u;
     }
 
+   
+    
 }

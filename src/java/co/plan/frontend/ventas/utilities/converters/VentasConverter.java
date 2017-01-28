@@ -5,7 +5,7 @@
  */
 package co.plan.frontend.ventas.utilities.converters;
 
-import co.plan.backend.model.entities.Vehiculo;
+import co.plan.backend.model.entities.Venta;
 import co.plan.frontend.logica.AbstractConverter;
 import javax.faces.convert.FacesConverter;
 
@@ -13,9 +13,9 @@ import javax.faces.convert.FacesConverter;
  *
  * @author miguelangel
  */
-@FacesConverter (forClass = Vehiculo.class)
-public class VehiculoConverter extends AbstractConverter {
-    public VehiculoConverter(){
-        this.namedManagedBean = "vehiculoManagedBean";
+@FacesConverter (forClass = Venta.class)
+public class VentasConverter extends AbstractConverter {
+    public VentasConverter(){
+        this.namedManagedBean = "ventaManagedBean";
     }
 }

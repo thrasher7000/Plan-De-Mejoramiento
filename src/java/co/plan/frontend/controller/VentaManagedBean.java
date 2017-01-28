@@ -7,10 +7,13 @@ package co.plan.frontend.controller;
 
 import co.plan.backend.model.entities.Venta;
 import co.plan.backend.persistence.facades.VentaFacadeLocal;
+import co.plan.frontend.logica.IManagedBean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 /**
@@ -18,12 +21,13 @@ import javax.inject.Inject;
  * @author miguelangel
  */
 @Named(value = "ventaManagedBean")
-@SessionScoped
-public class VentaManagedBean implements Serializable {
+@RequestScoped
+public class VentaManagedBean implements Serializable , IManagedBean<Venta>  {
     private Venta venta;
     @Inject private VentaFacadeLocal vFL;
     public VentaManagedBean() {
     }
+    @PostConstruct
     public void init(){
         venta = new Venta();
     }
@@ -35,23 +39,22 @@ public class VentaManagedBean implements Serializable {
     public void setVenta(Venta venta) {
         this.venta = venta;
     }
-
-    public VentaFacadeLocal getvFL() {
-        return vFL;
-    }
-
-    public void setvFL(VentaFacadeLocal vFL) {
-        this.vFL = vFL;
-    }
+    
      public void registrarVenta() {
+         venta.setFecha(new Date());
         vFL.create(venta);
     }
 
-    public List<Venta> ListarVenta() {
+    public List<Venta> listarVenta() {
         return vFL.findAll();
     }
 
     public void eliminarVenta(Venta v) {
         vFL.remove(v);
+    }
+
+    @Override
+    public Venta getObjectByKey(Integer key) {
+        return vFL.find(key);
     }
 }

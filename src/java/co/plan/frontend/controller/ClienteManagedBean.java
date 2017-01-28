@@ -3,11 +3,12 @@ package co.plan.frontend.controller;
 
 import co.plan.backend.model.entities.Cliente;
 import co.plan.backend.persistence.facades.ClienteFacadeLocal;
+import co.plan.frontend.logica.IManagedBean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 /**
@@ -15,8 +16,8 @@ import javax.inject.Inject;
  * @author miguelangel
  */
 @Named(value = "clienteManagedBean")
-@SessionScoped
-public class ClienteManagedBean implements Serializable {
+@RequestScoped
+public class ClienteManagedBean implements Serializable, IManagedBean<Cliente> {
     private Cliente cliente;
     @Inject private ClienteFacadeLocal cFL;
     public ClienteManagedBean() {
@@ -25,6 +26,7 @@ public class ClienteManagedBean implements Serializable {
     public void init (){
         cliente = new Cliente();
     }
+    @Override
     public Cliente getObjectByKey(Integer key){
         return cFL.find(key);
     }
@@ -47,7 +49,7 @@ public class ClienteManagedBean implements Serializable {
     public void registrar(){
        cFL.create(cliente);
     }
-    public List <Cliente> Listar(){
+    public List <Cliente> listarCliente(){
         return cFL.findAll();
     }
     public void eliminar (Cliente c){

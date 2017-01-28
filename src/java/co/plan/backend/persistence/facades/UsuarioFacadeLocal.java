@@ -30,5 +30,5 @@ public interface UsuarioFacadeLocal {
 
     int count();
     
-    public List<Usuario> logIn(String user,String password);
+    Usuario validarUsuario(String user, String password);
 }

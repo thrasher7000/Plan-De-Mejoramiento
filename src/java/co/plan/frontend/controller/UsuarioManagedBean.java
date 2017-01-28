@@ -2,27 +2,22 @@ package co.plan.frontend.controller;
 
 import co.plan.backend.model.entities.Usuario;
 import co.plan.backend.persistence.facades.UsuarioFacadeLocal;
+import co.plan.frontend.logica.IManagedBean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 /**
  *
  * @author miguelangel
  */
 @Named(value = "usuarioManagedBean")
-@SessionScoped
-public class UsuarioManagedBean implements Serializable {
-
+@RequestScoped
+public class UsuarioManagedBean implements  Serializable, IManagedBean<Usuario> {
+    private String user;
+    private String password;
     private Usuario usu;
     @Inject 
     private UsuarioFacadeLocal uFL;
@@ -51,6 +46,23 @@ public class UsuarioManagedBean implements Serializable {
         this.uFL = uFL;
     }
 
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+
     //C.R.U.D
     public void registrar() {
         uFL.create(usu);
@@ -64,35 +76,22 @@ public class UsuarioManagedBean implements Serializable {
         uFL.remove(u);
     }
 
-    public Usuario loginControl(String username, String password) {
+    @Override
+    public Usuario getObjectByKey(Integer key) {
+        return uFL.find(key);
+    }
+    public String inicioSesion(){
         try {
-            List<Usuario> myusu = uFL.logIn(username, password);
-            if (myusu.size() > 0) {
-                for (Usuario us : myusu) {
-                    return us;
-                }
-            } else {
-                return null;
+            usu = uFL.validarUsuario(user, password);
+            if (usu!= null ) {
+                FacesUtils.setUsuarioLogueado(usu);
+                return "seguridad/inicio.xhtml";
             }
+            FacesUtils.mensaje("error usuario invalido");
+            return null;
         } catch (Exception e) {
+            FacesUtils.mensaje("error exeption");
             return null;
         }
-        return null;
-    }
-
-    public void validar() {
-        try {
-            Usuario usu = this.loginControl(this.usu.getUsuario(), this.usu.getContrasena());
-            if (usu != null) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Login Succes", "Bienvenido "+usu.getNombre()));
-                ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-                context.redirect(context.getRequestContextPath() + "/faces/inicio.xhtml");
-            } else {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Usuario o Contraseña Incorrecta"));
-            }
-        } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Contact admin."));
-        }
-
     }
 }

@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -30,9 +32,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario")
     , @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre")
     , @NamedQuery(name = "Usuario.findByUsuario", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario")
-    , @NamedQuery(name = "Usuario.findByUsuarioAndPassword", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario and u.contrasena = :contrasena")
     , @NamedQuery(name = "Usuario.findByContrasena", query = "SELECT u FROM Usuario u WHERE u.contrasena = :contrasena")})
-public class Usuario implements Serializable {
+public class Usuario implements Serializable,IEntity {
+
+    @JoinColumn(name = "nit", referencedColumnName = "nit")
+    @ManyToOne(optional = false)
+    private Concesionario nit;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -112,6 +117,19 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "co.plan.backend.model.entities.Usuario[ idUsuario=" + idUsuario + " ]";
+    }
+
+    public Concesionario getNit() {
+        return nit;
+    }
+
+    public void setNit(Concesionario nit) {
+        this.nit = nit;
+    }
+
+    @Override
+    public String getPK() {
+        return idUsuario.toString();
     }
     
 }

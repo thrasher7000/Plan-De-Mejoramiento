@@ -11,10 +11,10 @@
             <p:fieldset legend="Inicio de sesión">
             <h:panelGrid columns="2">
                 <p:outputLabel for="txtUsuario" value="Usuario"/>
-                <p:inputText id="txtUsuario" required="true" value="#{usuarioManagedBean.usu.usuario}"/>
+                <p:inputText id="txtUsuario" required="true" value="#{usuarioManagedBean.user}"/>
                 <p:outputLabel for="txtClave" value="Clave"/>
-                <p:inputText type="password" id="txtClave" required="true" value="#{usuarioManagedBean.usu.contrasena}"/>
-                <p:commandButton icon="ui-icon-key" value="ingresar" id="ingresar" actionListener="#{usuarioManagedBean.validar()}"/>
+                <p:inputText type="password" id="txtClave" required="true" value="#{usuarioManagedBean.password}"/>
+                <p:commandButton icon="ui-icon-key" value="ingresar" id="ingresar" action="#{usuarioManagedBean.inicioSesion()}"/>
             </h:panelGrid>
             </p:fieldset>
             <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />

@@ -1,0 +1,28 @@
+
+body{
+    display:flex;
+    margin:0px;
+}
+#left{
+    background:#ffffff;
+    display:inline-block;
+    width:20%;
+}
+#content{
+    background:lightgrey;
+    display:inline-block;
+    width:80%;
+}
+
+.ui-menuitem{
+    background:lightgrey;
+    min-width:95% !important;
+    width: 98%;
+}
+.ui-menuitem-text{
+    color:#000;
+}
+.ui-menu{
+    min-width:95% !important;
+    width: 98%;
+}

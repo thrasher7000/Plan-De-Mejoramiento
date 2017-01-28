@@ -6,6 +6,7 @@
 package co.plan.backend.model.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -31,7 +34,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Venta.findAll", query = "SELECT v FROM Venta v")
     , @NamedQuery(name = "Venta.findByIdVenta", query = "SELECT v FROM Venta v WHERE v.idVenta = :idVenta")
     , @NamedQuery(name = "Venta.findByFecha", query = "SELECT v FROM Venta v WHERE v.fecha = :fecha")})
-public class Venta implements Serializable {
+public class Venta implements Serializable ,IEntity {
+
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "fecha")
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,10 +48,6 @@ public class Venta implements Serializable {
     @Basic(optional = false)
     @Column(name = "idVenta")
     private Integer idVenta;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "fecha")
-    private int fecha;
     @JoinColumn(name = "idCliente", referencedColumnName = "idCliente")
     @ManyToOne(optional = false)
     private Cliente idCliente;
@@ -57,7 +62,7 @@ public class Venta implements Serializable {
         this.idVenta = idVenta;
     }
 
-    public Venta(Integer idVenta, int fecha) {
+    public Venta(Integer idVenta, Date fecha) {
         this.idVenta = idVenta;
         this.fecha = fecha;
     }
@@ -70,13 +75,6 @@ public class Venta implements Serializable {
         this.idVenta = idVenta;
     }
 
-    public int getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(int fecha) {
-        this.fecha = fecha;
-    }
 
     public Cliente getIdCliente() {
         return idCliente;
@@ -117,6 +115,19 @@ public class Venta implements Serializable {
     @Override
     public String toString() {
         return "co.plan.backend.model.entities.Venta[ idVenta=" + idVenta + " ]";
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    @Override
+    public String getPK() {
+        return idVenta.toString();
     }
     
 }

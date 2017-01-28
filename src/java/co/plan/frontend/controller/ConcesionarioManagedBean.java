@@ -3,9 +3,11 @@ package co.plan.frontend.controller;
 
 import co.plan.backend.model.entities.Concesionario;
 import co.plan.backend.persistence.facades.ConcesionarioFacadeLocal;
+import co.plan.frontend.logica.IManagedBean;
+import java.io.Serializable;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 /**
@@ -13,8 +15,8 @@ import javax.inject.Inject;
  * @author miguelangel
  */
 @Named(value = "concesionarioManagedBean")
-@Dependent
-public class ConcesionarioManagedBean {
+@RequestScoped
+public class ConcesionarioManagedBean implements Serializable,IManagedBean <Concesionario> {
     private Concesionario con;
     @Inject private ConcesionarioFacadeLocal cFL;
     public ConcesionarioManagedBean() {
@@ -46,5 +48,10 @@ public class ConcesionarioManagedBean {
     }
     public void eliminarConcesionario (){
         cFL.remove(con);
+    }
+
+    @Override
+    public Concesionario getObjectByKey(Integer key) {
+        return cFL.find(key);
     }
 }

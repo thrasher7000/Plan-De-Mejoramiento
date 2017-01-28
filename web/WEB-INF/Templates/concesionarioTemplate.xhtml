@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="css/default.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="left">
+            <ui:insert name="left">
+                <h:form>
+                <p:menu>
+                    <p:menuitem value="Ventas" outcome="/seguridad/ventas"/>
+                    <p:menuitem value="Clientes" outcome="/seguridad/clientes"/>
+                    <p:menuitem value="Vehículos" outcome="/seguridad/vehiculos"/>
+                    <p:menuitem value="Cerrar Sesión" action="#{perfilManagedBean.cerrarSesion()}"/>
+                </p:menu>
+                    </h:form><br/>
+                    <h:form id="marca">
+                    <p:fieldset legend="Marca que posee el modelo mas reciente">
+                    <p:outputLabel value="#{vehiculoManagedBean.consultaMarcaModelo().marca}"></p:outputLabel><br/>
+                    <p:outputLabel value="#{vehiculoManagedBean.consultaMarcaModelo().modelo}"></p:outputLabel>
+                    </p:fieldset>
+                </h:form>
+            </ui:insert>
+        </div>
+        <div id="content" class="left_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+
+    </h:body>
+
+</html>
