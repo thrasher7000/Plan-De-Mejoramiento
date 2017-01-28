@@ -13,51 +13,59 @@
             <ui:define name="content">
                 <h:panelGrid columns="1">
                     <p:fieldset legend="Registro de clientes">
-                         
-                            <h:form>
-                                <h:panelGrid columns="3">    
-                                    <br></br><p:outputLabel value="Ingrese su nombre :"></p:outputLabel>
-                                    <p:inputText type="text" required="true" value="#{clienteManagedBean.cliente.nombre}"></p:inputText>
-                                    <br></br><p:outputLabel value="Ingrese su dirección :"></p:outputLabel>
-                                    <p:inputText type="text" required="true" value="#{clienteManagedBean.cliente.direccion}"></p:inputText>
-                                    <br></br><p:outputLabel value="Ingrese su teléfono: "></p:outputLabel>
-                                    <p:inputText type="number" required="true" value="#{clienteManagedBean.cliente.telefono}"></p:inputText>
-                                </h:panelGrid>
-                                    <p:commandButton value="Registrar" actionListener="#{clienteManagedBean.registrar()}"></p:commandButton>
-                            </h:form>
-                        
+
+                        <h:form>
+                            <h:panelGrid columns="3">    
+                                <br></br><p:outputLabel value="Ingrese su nombre :"></p:outputLabel>
+                                <p:inputText type="text" required="true" value="#{clienteManagedBean.cliente.nombre}"></p:inputText>
+                                <br></br><p:outputLabel value="Ingrese su dirección :"></p:outputLabel>
+                                <p:inputText type="text" required="true" value="#{clienteManagedBean.cliente.direccion}"></p:inputText>
+                                <br></br><p:outputLabel value="Ingrese su teléfono: "></p:outputLabel>
+                                <p:inputText type="number" required="true" value="#{clienteManagedBean.cliente.telefono}"></p:inputText>
+                            </h:panelGrid>
+                            <p:commandButton value="Registrar" actionListener="#{clienteManagedBean.registrar()}"></p:commandButton>
+                        </h:form>
+
                     </p:fieldset>
                 </h:panelGrid>
                 <h:form>
-                <p:fieldset  legend="Lista de clientes"></p:fieldset>
-                <p:dataTable value="#{clienteManagedBean.listarCliente()}" var="item">
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="ID"/>
-                        </f:facet>
-                        <h:outputText value="#{item.idCliente}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nombres"/>
-                        </f:facet>
-                        <h:outputText value="#{item.nombre}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Teléfono"/>
-                        </f:facet>
-                        <h:outputText value="#{item.telefono}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Dirección"/>
-                        </f:facet>
-                        <h:outputText value="#{item.direccion}"/>
-                    </p:column>
-                   
-                </p:dataTable>
-            </h:form>
+                    <p:fieldset  legend="Lista de clientes">
+                         <h:commandLink class="exportar" value="Exel">
+                                        <p:dataExporter type="xls" target="cliente" fileName="Lista de clientes" />
+                                    </h:commandLink>
+                            <h:commandLink class="exportar" value="Pdf">
+                                        <p:dataExporter type="pdf" target="cliente" fileName="Lista de clientes"/>
+                                    </h:commandLink>
+                        <p:dataTable id="cliente" value="#{clienteManagedBean.listarCliente()}" var="item">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="ID"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idCliente}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nombres"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nombre}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Teléfono"/>
+                                </f:facet>
+                                <h:outputText value="#{item.telefono}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Dirección"/>
+                                </f:facet>
+                                <h:outputText value="#{item.direccion}"/>
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:fieldset>
+
+                </h:form>
             </ui:define>
 
         </ui:composition>

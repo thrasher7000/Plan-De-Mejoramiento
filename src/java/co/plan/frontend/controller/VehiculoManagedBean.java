@@ -20,6 +20,8 @@ import javax.faces.event.ActionEvent;
 @RequestScoped
 public class VehiculoManagedBean implements Serializable ,IManagedBean<Vehiculo> {
     private Vehiculo vehiculo;
+    private int precioMayor;
+    private List<Vehiculo> listaMayorPrecio;
     @Inject private VehiculoFacadeLocal vFL;
     public VehiculoManagedBean() {
     }
@@ -43,6 +45,15 @@ public class VehiculoManagedBean implements Serializable ,IManagedBean<Vehiculo>
     public void setvFL(VehiculoFacadeLocal vFL) {
         this.vFL = vFL;
     }
+
+    public int getPrecioMayor() {
+        return precioMayor;
+    }
+
+    public void setPrecioMayor(int precioMayor) {
+        this.precioMayor = precioMayor;
+    }
+    
     //C.R.U.D
     public void registrarVehiculo(){
         System.out.println("co.plan.frontend.controller.VehiculoManagedBean.registrarVehiculo()");
@@ -72,5 +83,11 @@ public class VehiculoManagedBean implements Serializable ,IManagedBean<Vehiculo>
     @Override
     public Vehiculo getObjectByKey(Integer key) {
         return vFL.find(key);
+    }
+    public void consultarListaPrecioMayor(){
+        this.listaMayorPrecio = vFL.findbyMayorPrecio(precioMayor);
+    }
+    public List<Vehiculo> listaMayor(){
+        return listaMayorPrecio;
     }
 }

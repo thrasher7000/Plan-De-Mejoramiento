@@ -12,7 +12,8 @@
 
             <ui:define name="content">
                 <h:panelGrid columns="1">
-                    <h:form>
+                    <h:panelGrid columns="2">
+                        <h:form>
                         <p:fieldset legend="Registro de vehículos">
                             <h:panelGrid columns="2">
                                 <p:outputLabel value="Marca:" for="marca" />
@@ -31,13 +32,51 @@
                             <p:commandButton id="registrar" value="Registrar" actionListener="#{vehiculoManagedBean.registrarVehiculo()}" update=":formulario:tabla"></p:commandButton>
                         </p:fieldset>
                     </h:form>
+                        <h:panelGrid columns="1">
+                            <p:fieldset legend="Ingrese valor del vehículo que desea consultar:">
+                            <h:form>
+                                <p:inputText value="#{vehiculoManagedBean.precioMayor}"></p:inputText>
+                                <p:commandButton value="Buscar" update=":mayor:precio" actionListener="#{vehiculoManagedBean.consultarListaPrecioMayor()}" ></p:commandButton>
+                            </h:form>
+                                    <h:form id="mayor">
+                                        <p:dataTable id="precio" value="#{vehiculoManagedBean.listaMayor()}" var="item">
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="CodigoVehiculo"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.codigoVehiculo}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="Marca"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.marca}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="Modelo"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.modelo}"/>
+                                            </p:column>
+                                            <p:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="Precio"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.precio}"/>
+                                            </p:column>
+                                            
+                                        </p:dataTable>
+                                    </h:form>
+                                </p:fieldset>
+                        </h:panelGrid>
+                    </h:panelGrid>
                     <h:form id="formulario">
                         <p:fieldset legend="Lista de vehículos">
                               <h:commandLink class="exportar" value="Exel">
-                                        <p:dataExporter type="xls" target="tabla" fileName="Lista de vehículos" />
+                                        <p:dataExporter type="xls" target="tabla" fileName="Lista de vehiculos" />
                                     </h:commandLink>
                             <h:commandLink class="exportar" value="Pdf">
-                                        <p:dataExporter type="pdf" target="tabla" fileName="Lista de vehículos"/>
+                                        <p:dataExporter type="pdf" target="tabla" fileName="Lista de vehiculos"/>
                                     </h:commandLink>
                             <p:dataTable id="tabla"  paginator="true" rows="10" style="margin-bottom:20px" value="#{vehiculoManagedBean.listarVehiculos()}" var="item">
                                 
@@ -71,7 +110,6 @@
                                     </f:facet>
                                     <h:outputText value="#{item.codigoConcesionario.nombre}"/>
                                 </p:column>
-                                
                                   
                             </p:dataTable>
                         </p:fieldset>
