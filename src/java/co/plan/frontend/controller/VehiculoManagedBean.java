@@ -69,15 +69,16 @@ public class VehiculoManagedBean implements Serializable ,IManagedBean<Vehiculo>
         System.out.println("co.plan.frontend.controller.VehiculoManagedBean.registrarVehiculo()"+e);
     }
     public Vehiculo consultaMarcaModelo(){
+        Vehiculo vs = new Vehiculo();
         int x = 0;
         for(Vehiculo v:this.listarVehiculos()){
             
             if (v.getModelo()>x) {
                 x=v.getModelo();
-                vehiculo = v;
+                vs = v;
             }
         }
-        return vehiculo;
+        return vs;
     }
 
     @Override
@@ -90,4 +91,29 @@ public class VehiculoManagedBean implements Serializable ,IManagedBean<Vehiculo>
     public List<Vehiculo> listaMayor(){
         return listaMayorPrecio;
     }
+     public int consultaVehiculoCostoso(){
+        int x = 0;
+        for(Vehiculo v:this.listarVehiculos()){
+            
+            if (v.getPrecio()>x) {
+                x=v.getPrecio();
+            }
+        }
+        return x;
+    }
+     public Vehiculo consultarPrecioBajo(){
+        Vehiculo vs = new Vehiculo();
+        int x = this.consultaVehiculoCostoso();
+        for(Vehiculo v:this.listarVehiculos()){
+            
+            if (v.getPrecio()<x) {
+                x=v.getPrecio();
+                vs = v;
+            }
+        }
+        return vs;
+    }
+     public Vehiculo getVehiculoMasVendido(Vehiculo v){
+         return vFL.find(v);
+     }
 }

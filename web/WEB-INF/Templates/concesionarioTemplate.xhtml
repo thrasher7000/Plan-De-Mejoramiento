@@ -8,7 +8,7 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="css/default.css"/>
-        <title>Facelets Template</title>
+        <title>Sistema de red concesionario</title>
     </h:head>
 
     <h:body>
@@ -26,7 +26,15 @@
                     <h:form id="marca">
                     <p:fieldset legend="Marca que posee el modelo mas reciente">
                     <p:outputLabel value="#{vehiculoManagedBean.consultaMarcaModelo().marca}"></p:outputLabel><br/>
-                    <p:outputLabel value="#{vehiculoManagedBean.consultaMarcaModelo().modelo}"></p:outputLabel>
+                    <p:outputLabel value="#{vehiculoManagedBean.consultaMarcaModelo().modelo}"></p:outputLabel><br/>
+                    <p:outputLabel value="$#{vehiculoManagedBean.consultaMarcaModelo().precio}"></p:outputLabel><br/>
+                    <p:outputLabel value="#{vehiculoManagedBean.consultaMarcaModelo().codigoConcesionario.nombre}"></p:outputLabel>
+                    </p:fieldset>
+                    <p:fieldset legend="Marca y precio de vehículo más económico">
+                        <p:outputLabel value="#{vehiculoManagedBean.consultarPrecioBajo().marca}"></p:outputLabel><br/>
+                        <p:outputLabel value="#{vehiculoManagedBean.consultarPrecioBajo().modelo}"></p:outputLabel><br/>
+                        <p:outputLabel value="$#{vehiculoManagedBean.consultarPrecioBajo().precio}"></p:outputLabel><br/>
+                        <p:outputLabel value="$#{vehiculoManagedBean.consultarPrecioBajo().codigoConcesionario.nombre}"></p:outputLabel>
                     </p:fieldset>
                 </h:form>
             </ui:insert>

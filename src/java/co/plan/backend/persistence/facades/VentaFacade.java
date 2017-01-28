@@ -28,5 +28,10 @@ public class VentaFacade extends AbstractFacade<Venta> implements VentaFacadeLoc
     public VentaFacade() {
         super(Venta.class);
     }
-    
+    @Override
+    public Venta getVehiculoMasVendido(){
+         Venta v = (Venta) em.createNativeQuery("SELECT  COUNT(*) AS num  FROM ventas GROUP BY idVehiculo ORDER BY num ")
+                .getResultList().get(0);
+         return v;
+    }
 }

@@ -85,7 +85,7 @@ public class UsuarioManagedBean implements  Serializable, IManagedBean<Usuario> 
             usu = uFL.validarUsuario(user, password);
             if (usu!= null ) {
                 FacesUtils.setUsuarioLogueado(usu);
-                return "seguridad/inicio.xhtml";
+                return "seguridad/ventas.xhtml";
             }
             FacesUtils.mensaje("error usuario invalido");
             return null;

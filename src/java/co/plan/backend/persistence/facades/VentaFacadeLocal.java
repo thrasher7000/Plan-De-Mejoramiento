@@ -29,5 +29,6 @@ public interface VentaFacadeLocal {
     List<Venta> findRange(int[] range);
 
     int count();
+    Venta getVehiculoMasVendido();
     
 }

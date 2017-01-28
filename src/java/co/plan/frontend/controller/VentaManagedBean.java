@@ -57,4 +57,7 @@ public class VentaManagedBean implements Serializable , IManagedBean<Venta>  {
     public Venta getObjectByKey(Integer key) {
         return vFL.find(key);
     }
+    public Venta getVentaVehiculoMasVendido(){
+        return vFL.getVehiculoMasVendido();
+    }
 }
