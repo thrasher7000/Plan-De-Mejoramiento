@@ -33,7 +33,14 @@
                     </h:form>
                     <h:form id="formulario">
                         <p:fieldset legend="Lista de vehículos">
-                            <p:dataTable id="tabla" value="#{vehiculoManagedBean.listarVehiculos()}" var="item">
+                              <h:commandLink class="exportar" value="Exel">
+                                        <p:dataExporter type="xls" target="tabla" fileName="Lista de vehículos" />
+                                    </h:commandLink>
+                            <h:commandLink class="exportar" value="Pdf">
+                                        <p:dataExporter type="pdf" target="tabla" fileName="Lista de vehículos"/>
+                                    </h:commandLink>
+                            <p:dataTable id="tabla"  paginator="true" rows="10" style="margin-bottom:20px" value="#{vehiculoManagedBean.listarVehiculos()}" var="item">
+                                
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="CodigoVehiculo"/>
@@ -64,8 +71,11 @@
                                     </f:facet>
                                     <h:outputText value="#{item.codigoConcesionario.nombre}"/>
                                 </p:column>
+                                
+                                  
                             </p:dataTable>
                         </p:fieldset>
+
                     </h:form>
                 </h:panelGrid>
             </ui:define>

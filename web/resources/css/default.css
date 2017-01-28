@@ -1,4 +1,3 @@
-
 body{
     display:flex;
     margin:0px;
@@ -25,4 +24,15 @@ body{
 .ui-menu{
     min-width:95% !important;
     width: 98%;
+}
+.exportar{
+    background: linear-gradient(to bottom, rgba(242,242,242,1) 0%, rgba(222,222,222,1) 51%, rgba(150,150,150,1) 100%);
+    display:inline-block;
+    padding:10px 20px;
+    border-radius:4px;
+    margin-right:4px;
+    margin-bottom:5px;
+    text-decoration:none;
+    font-weight:bold;
+    border:1px solid grey;
 }
